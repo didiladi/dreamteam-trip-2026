@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operation: Top Secret Boys Trip 2026</title>
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --accent: #e94560;
+            --text: #ffffff;
+            --bg-dark: #0f0f1a;
+        }
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--bg-dark);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            padding: 2rem;
+            text-align: center;
+        }
+        h1 {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+        }
+        .classified-box {
+            background-color: var(--primary);
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        .redacted {
+            background-color: var(--text);
+            color: var(--text);
+            padding: 0 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+        .redacted:hover {
+            color: #000;
+        }
+        .clue-list {
+            text-align: left;
+            margin-top: 2rem;
+        }
+        .clue-item {
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--accent);
+        }
+        .countdown {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent);
+            margin: 2rem 0;
+        }
+        .btn {
+            background-color: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-family: inherit;
+        }
+        .btn:hover {
+            background-color: var(--accent);
+            color: var(--bg-dark);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Operation: Boys Trip 2026</h1>
+    <p>Status: <span style="color: var(--accent); font-weight: bold;">CLASSIFIED</span></p>
+    
+    <div class="classified-box">
+        <h2>Einsatzbefehl</h2>
+        <p>Männer. Der Termin steht. Die Planung ist abgeschlossen. Euer Reiseleiter hat eine Location ausgewählt, die <span class="redacted">Lignano</span> und <span class="redacted">Jesolo</span> wie einen Kindergeburtstag aussehen lässt.</p>
+        <p>Packliste: Badehose, Sonnenbrille, und das beste Club-Outfit. Wer Wanderschuhe einpackt, muss die erste Runde zahlen.</p>
+    </div>
+
+    <div class="countdown" id="timer">
+        -- TAGE : -- STD : -- MIN
+    </div>
+
+    <div class="classified-box clue-list">
+        <h2 style="text-align: center;">Geheimdienst-Hinweise (Freigegeben)</h2>
+        
+        <div class="clue-item">
+            <strong>Hinweis #1: Die Geographie</strong><br>
+            Wir reisen auf eine Insel. Aber wer Angst vor Seekrankheit oder langsamen Fähren hat, kann sich entspannen. Wir fahren drüber, nicht drauf.
+        </div>
+        
+        <div class="clue-item">
+            <strong>Hinweis #2: Die Logistik</strong><br>
+            Abfahrt Graz-Süd (Fernitz/Hausmannstätten). Niemand wird länger als 4 Stunden in einem Auto eingesperrt sein. Effizienz ist das oberste Gebot.
+        </div>
+        
+        <div class="clue-item">
+            <strong>Hinweis #3: Die Nacht</strong><br>
+            Es wird wild. Aber wir schwitzen nicht in einem dunklen Keller. Wir feiern unter freiem Himmel. Denkt an <span class="redacted">Diamanten</span>.
+        </div>
+    </div>
+
+    <button class="btn" onclick="alert('Netter Versuch. Du musst schon selbst draufkommen, oder mich bestechen.')">Zielort Entschlüsseln</button>
+</div>
+
+<script>
+    // Set the date we're counting down to (Adjusted to August 14, 2026 for Ferragosto weekend example)
+    var countDownDate = new Date("Aug 14, 2026 06:00:00").getTime();
+
+    var x = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+        document.getElementById("timer").innerHTML = days + " TAGE : " + hours + " STD : " + minutes + " MIN";
+
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("timer").innerHTML = "EINSATZ LÄUFT";
+        }
+    }, 1000);
+</script>
+
+</body>
+</html>
