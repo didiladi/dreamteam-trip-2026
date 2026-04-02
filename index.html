@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Operation: Top Secret Boys Trip 2026</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <style>
         :root {
             --primary: #1a1a2e;
@@ -83,6 +85,13 @@
             background-color: var(--accent);
             color: var(--bg-dark);
         }
+        #map {
+            height: 300px;
+            width: 100%;
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -94,7 +103,23 @@
     <div class="classified-box">
         <h2>Einsatzbefehl</h2>
         <p>Männer. Der Termin steht. Die Planung ist abgeschlossen. Euer Reiseleiter hat eine Location ausgewählt, die <span class="redacted">Lignano</span> und <span class="redacted">Jesolo</span> wie einen Kindergeburtstag aussehen lässt.</p>
-        <p>Packliste: Badehose, Sonnenbrille, und das beste Club-Outfit. Wer Wanderschuhe einpackt, muss die erste Runde zahlen.</p>
+        
+        <h3 style="text-align: left;">Packliste:</h3>
+        <ul style="text-align: left; list-style-type: square;">
+            <li>Reisepass (PFLICHT!)</li>
+            <li>Badehose</li>
+            <li>Sonnenbrille</li>
+            <li>Das beste Club-Outfit</li>
+        </ul>
+        <p style="text-align: left;">Wer Wanderschuhe einpackt, muss die erste Runde zahlen.</p>
+
+        <h3 style="text-align: left;">Budget:</h3>
+        <p style="text-align: left;">Ca. 500€ pro Person für Logis. Spesen für Kaltgetränke sind nach oben offen.</p>
+    </div>
+
+    <div class="classified-box">
+        <h2>Einsatzradius</h2>
+        <div id="map"></div>
     </div>
 
     <div class="countdown" id="timer">
@@ -106,12 +131,12 @@
         
         <div class="clue-item">
             <strong>Hinweis #1: Die Geographie</strong><br>
-            Wir reisen auf eine Insel. Aber wer Angst vor Seekrankheit oder langsamen Fähren hat, kann sich entspannen. Wir fahren drüber, nicht drauf.
+            Die Geographie ist <span class="redacted">STRENG GEHEIM</span>. Wir begeben uns in unbekanntes Terrain.
         </div>
         
         <div class="clue-item">
             <strong>Hinweis #2: Die Logistik</strong><br>
-            Abfahrt Graz-Süd (Fernitz/Hausmannstätten). Niemand wird länger als 4 Stunden in einem Auto eingesperrt sein. Effizienz ist das oberste Gebot.
+            Abfahrt Graz-Süd (Fernitz/Hausmannstätten). Das Transportmittel bleibt vorerst geheim. Effizienz ist das oberste Gebot.
         </div>
         
         <div class="clue-item">
@@ -126,6 +151,22 @@
 <script>
     // Set the date we're counting down to (Adjusted to August 14, 2026 for Ferragosto weekend example)
     var countDownDate = new Date("Aug 14, 2026 06:00:00").getTime();
+
+    // Initialize Map
+    var map = L.map('map').setView([47.0707, 15.4395], 5);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+    }).addTo(map);
+
+    var graz = [47.0707, 15.4395];
+    
+    // Radar rings
+    L.circle(graz, {color: '#e94560', fillColor: '#e94560', fillOpacity: 0.1, radius: 150000}).addTo(map);
+    L.circle(graz, {color: '#e94560', fillColor: '#e94560', fillOpacity: 0.05, radius: 300000}).addTo(map);
+    L.circle(graz, {color: '#e94560', fillColor: '#e94560', fillOpacity: 0.02, radius: 600000}).addTo(map);
+    
+    // Origin marker
+    L.circleMarker(graz, {color: '#fff', fillColor: '#e94560', fillOpacity: 1, radius: 6}).addTo(map).bindPopup("Point of Origin: Graz");
 
     var x = setInterval(function() {
         var now = new Date().getTime();
